@@ -39,7 +39,8 @@
   (not (= 1 1)) ; #f
 
 
-; Exercise 1.1.  Below is a sequence of expressions. What is the result printed by the interpreter in response to each expression? Assume that the sequence is to be evaluated in the order in which it is presented.
+; Exercise 1.1.  Below is a sequence of expressions. What is the result printed by the interpreter in response
+; to each expression? Assume that the sequence is to be evaluated in the order in which it is presented.
   10 ; 10
   (+ 5 3 4) ; 12
   (- 9 1) ; 8
@@ -62,14 +63,16 @@
     (+ a 1)) ; 16
 
 
-; Exercise 1.2.  Translate the following expression into prefix form: https://mitpress.mit.edu/sites/default/files/sicp/full-text/book/book-Z-H-10.html#%_thm_1.2
+; Exercise 1.2.  Translate the following expression into prefix form: 
+; https://mitpress.mit.edu/sites/default/files/sicp/full-text/book/book-Z-H-10.html#%_thm_1.2
   (/
     (+ 5 4 (- 2 (- 3 (+ 6 (/ 4 5)))))
     (* 3 (- 6 2) (- 2 7))
   ) ; -0.2466
 
 
-; Exercise 1.3.  Define a procedure that takes three numbers as arguments and returns the sum of the squares of the two larger numbers.
+; Exercise 1.3.  Define a procedure that takes three numbers as arguments and returns the sum of
+; the squares of the two larger numbers.
   ; pseudocode:
   ; if x is lowest return y^2 + z^2
   ; if y is lowest return z^2 + x^2
@@ -91,13 +94,16 @@
   )
 
 
-; Exercise 1.4.  Observe that our model of evaluation allows for combinations whose operators are compound expressions. Use this observation to describe the behavior of the following procedure:
+; Exercise 1.4.  Observe that our model of evaluation allows for combinations whose operators are
+; compound expressions. Use this observation to describe the behavior of the following procedure:
   (define (a-plus-abs-b a b)
     ((if (> b 0) + -) a b))
-  ; If b is negative it will be subtracted from a, cancelling the negative. If b is positive it will just be added.
+  ; If b is negative it will be subtracted from a, cancelling the negative.
+  ; If b is positive it will just be added.
 
 
-; Exercise 1.5.  Ben Bitdiddle has invented a test to determine whether the interpreter he is faced with is using applicative-order evaluation or normal-order evaluation. He defines the following two procedures:
+; Exercise 1.5.  Ben Bitdiddle has invented a test to determine whether the interpreter he is faced
+; with is using applicative-order evaluation or normal-order evaluation. He defines the following two procedures:
   (define (p) (p))
 
   (define (test x y)
@@ -109,7 +115,13 @@
 
   (test 0 (p))
 
-  ; What behavior will Ben observe with an interpreter that uses applicative-order evaluation? What behavior will he observe with an interpreter that uses normal-order evaluation? Explain your answer. (Assume that the evaluation rule for the special form if is the same whether the interpreter is using normal or applicative order: The predicate expression is evaluated first, and the result determines whether to evaluate the consequent or the alternative expression.)
+  ; What behavior will Ben observe with an interpreter that uses applicative-order evaluation? What behavior will
+  ; he observe with an interpreter that uses normal-order evaluation? Explain your answer. (Assume that the
+  ; evaluation rule for the special form if is the same whether the interpreter is using normal or applicative order:
+  ; The predicate expression is evaluated first, and the result determines whether to evaluate the consequent or
+  ; the alternative expression.)
 
-  ; In an interpreter based on applicative-order evaluation, Ben would observe an error or infinite loop type situation since evaluating p with a reference to itself will cause an issue.
-  ; On the other hand, in a normal-order language, the procedure p would never get called since x would equal 0, making test return 0 before ever needing to use p. That's why normal-order is also known as lazy evaluation.
+  ; Answer: In an interpreter based on applicative-order evaluation, Ben would observe an error or infinite loop type
+  ; situation since evaluating p with a reference to itself will cause an issue.
+  ; On the other hand, in a normal-order language, the procedure p would never get called since x would equal 0, making
+  ; test return 0 before ever needing to use p. That's why normal-order is also known as lazy evaluation.
