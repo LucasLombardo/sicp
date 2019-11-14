@@ -55,3 +55,49 @@
   ; The second procedure is a tail-recursive procedure and an iterative process since it maintains its' state
   ; with each step, which is essentially its total value in this case. Since it is just altering `a` and `b`, when
   ; it reaches the base case of `a` being 0, it doesn't need to do anything else - `b` is the answer. 
+
+
+; Exercise 1.10.  The following procedure computes a mathematical function called Ackermann's function.
+
+  (define (A x y)
+    (cond 
+      ((= y 0) 0)
+      ((= x 0) (* 2 y))
+      ((= y 1) 2)
+      (else 
+        (A (- x 1) (A x (- y 1)))
+      )
+    )
+  )
+
+  x 1 y 10
+
+  (A (2) (A 1 9))
+
+  x 1 y 9
+
+  ; What are the values of the following expressions?
+
+  (A 1 10) ; 512
+
+  (A 2 4) ; 65,536
+
+  (A 3 3) ; 65,536
+
+  ; Consider the following procedures, where A is the procedure defined above:
+
+  (define (f n) (A 0 n)) 
+
+  (define (g n) (A 1 n))
+
+  (define (h n) (A 2 n))
+
+  (define (k n) (* 5 n n))
+
+  ; Give concise mathematical definitions for the functions computed by the procedures f, g, and h for positive integer values of n. For example, (k n) computes 5n2.
+
+  ; Answer:
+  ; f: 2n
+  ; g: 2^n
+  ; h: 2(^2)(^2)... (power of 2 n-1 times)
+  ; k: 5n^2
